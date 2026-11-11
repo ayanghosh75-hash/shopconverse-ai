@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ShopConverse AI — Merchant Intelligence & Control Center</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+
+  <!-- Sidebar Navigation -->
+  <aside class="sidebar">
+    <div>
+      <div class="brand">
+        <div class="logo-badge">✦</div>
+        <div>
+          <h2>ShopConverse AI</h2>
+          <span class="tag">Merchant Hub</span>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <a href="#analytics" class="active">
+          <span>📊</span> Performance & Revenue
+        </a>
+        <a href="#customizer">
+          <span>🎨</span> Live Customizer
+        </a>
+        <a href="#embed">
+          <span>⚡</span> 1-Line Embed Script
+        </a>
+        <a href="#products">
+          <span>📦</span> Active Product Catalog
+        </a>
+        <a href="../public/demo-store.html" target="_blank" class="live-demo-link">
+          <span>🛍️</span> Launch Live Demo Store ↗
+        </a>
+      </nav>
+    </div>
+
+    <div class="pro-card">
+      <h4>⚡ Pro Tier Active</h4>
+      <p>Automated AI shopping concierge driving +24.5% conversion increase 24/7.</p>
+      <a href="https://www.buymeacoffee.com/AyanKumarGhosh" target="_blank" class="btn-upgrade">Manage Subscription ($19/mo)</a>
+    </div>
+  </aside>
+
+  <!-- Main Content View -->
+  <main class="main">
+    <header class="topbar">
+      <div>
+        <h1>Merchant Intelligence & Control</h1>
+        <p style="color: var(--text-secondary); font-size: 13.5px; margin-top: 4px;">Universal Sales Concierge for Shopify, WooCommerce & Custom Commerce</p>
+      </div>
+      <div class="topbar-right">
+        <span class="status-indicator">
+          <span class="pulse-dot"></span>
+          AI Concierge Active
+        </span>
+        <span class="store-badge">Connected: <strong>LUMINA STUDIO</strong></span>
+      </div>
+    </header>
+
+    <!-- Key Performance Metrics Grid -->
+    <section class="stats-grid" id="analytics">
+      <div class="stat-card">
+        <span class="stat-label">AI Attributed Revenue</span>
+        <span class="stat-value">$1,840.00</span>
+        <span class="stat-trend">↑ +24.5% vs last month</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Shopper Conversations</span>
+        <span class="stat-value">342</span>
+        <span class="stat-trend">↑ 88% resolution rate</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Add-to-Cart Conversions</span>
+        <span class="stat-value">68</span>
+        <span class="stat-trend">↑ 19.8% close rate</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">AI Response Latency</span>
+        <span class="stat-value">0.8s</span>
+        <span class="stat-trend neutral">⚡ Ultra-low latency</span>
+      </div>
+    </section>
+
+    <!-- 1-Line Installation Code Box -->
+    <section class="section" id="embed">
+      <div class="section-header">
+        <h2>⚡ 1-Line Zero-Config Installation</h2>
+        <p>Drop this single script tag right before the closing <code>&lt;/body&gt;</code> tag on any Shopify theme, WooCommerce header/footer, or HTML website. No backend changes required.</p>
+      </div>
+      
+      <div class="code-container">
+        <pre id="embedCode">&lt;script src="https://cdn.shopconverse.ai/v1/widget.js" data-store-name="LUMINA STUDIO" data-currency="$" defer&gt;&lt;/script&gt;</pre>
+        <button class="btn-copy" id="copyEmbedBtn">📋 Copy Script Tag</button>
+      </div>
+    </section>
+
+    <!-- Widget Customizer with Live Simulator -->
+    <section class="section" id="customizer">
+      <div class="section-header">
+        <h2>🎨 Assistant Styling & Personality</h2>
+        <p>Customize the assistant branding, greeting message, and incentives to match your brand aesthetic.</p>
+      </div>
+
+      <div class="customizer-layout">
+        <!-- Settings Form -->
+        <div class="form-container">
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Store Brand Name</label>
+              <input type="text" id="storeNameInput" value="LUMINA STUDIO">
+            </div>
+
+            <div class="form-group">
+              <label>Currency Symbol</label>
+              <input type="text" id="currencyInput" value="$">
+            </div>
+
+            <div class="form-group">
+              <label>Theme Brand Accent Color</label>
+              <div class="color-picker-wrap">
+                <input type="color" id="colorInput" value="#6366f1">
+                <span id="colorHexText">#6366f1</span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Promotional Exit/Incentive Coupon</label>
+              <input type="text" id="discountInput" value="LUMINA10">
+            </div>
+
+            <div class="form-group full-width">
+              <label>Opening Welcome Greeting</label>
+              <input type="text" id="greetingInput" value="Welcome to Lumina Studio. May I help you find handcrafted pieces for your home or office?">
+            </div>
+          </div>
+
+          <div class="customizer-actions">
+            <button class="btn-save" id="saveSettingsBtn">✓ Save & Apply Changes</button>
+            <span id="saveStatus" class="save-status"></span>
+          </div>
+        </div>
+
+        <!-- Live Assistant Preview Mockup -->
+        <div class="preview-panel">
+          <span class="preview-badge">✦ Live Simulator Preview</span>
+          <div class="sim-chat-mock">
+            <div class="sim-header" id="simHeader">
+              <div class="sim-avatar">✨</div>
+              <div>
+                <div class="sim-title" id="simStoreTitle">LUMINA STUDIO Concierge</div>
+                <div class="sim-status">● Online & Ready</div>
+              </div>
+            </div>
+            <div class="sim-body">
+              <div class="sim-bubble-ai" id="simGreetingBubble">
+                Welcome to Lumina Studio. May I help you find handcrafted pieces for your home or office?
+              </div>
+              <div class="sim-bubble-user">
+                I'm looking for a gift under $50.
+              </div>
+              <div class="sim-bubble-ai">
+                Here are two curated matches from our collection:
+                <br>• <strong>Nordic Minimalist Desk Clock</strong> ($42.00)
+                <br>• <strong>Hand-Poured Soy Candle</strong> ($26.00)
+                <br>Use code <strong><span id="simPromoCode">LUMINA10</span></strong> at checkout for 10% off!
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Product Catalog List -->
+    <section class="section" id="products">
+      <div class="section-header">
+        <h2>📦 AI Knowledge Base — Synced Store Catalog</h2>
+        <p>The AI concierge continuously indexes these catalog items to match customer inquiries with instant add-to-cart actions.</p>
+      </div>
+
+      <div class="table-wrap">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Item Name</th>
+              <th>Category</th>
+              <th>Price</th>
+              <th>Semantic Tags</th>
+              <th>AI Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Sculptural Ceramic Pour-Over Set</strong></td>
+              <td>Kitchenware & Living</td>
+              <td>$48.00</td>
+              <td>
+                <span class="tag-chip">coffee</span>
+                <span class="tag-chip">ceramic</span>
+                <span class="tag-chip">gift</span>
+              </td>
+              <td><span class="badge active">● Live Index</span></td>
+            </tr>
+            <tr>
+              <td><strong>Nordic Minimalist Desk Clock</strong></td>
+              <td>Objects & Decor</td>
+              <td>$42.00</td>
+              <td>
+                <span class="tag-chip">desk</span>
+                <span class="tag-chip">minimalist</span>
+                <span class="tag-chip">wood</span>
+              </td>
+              <td><span class="badge active">● Live Index</span></td>
+            </tr>
+            <tr>
+              <td><strong>Hand-Poured Amber Soy Candle</strong></td>
+              <td>Home Fragrance</td>
+              <td>$26.00</td>
+              <td>
+                <span class="tag-chip">candle</span>
+                <span class="tag-chip">relax</span>
+                <span class="tag-chip">scent</span>
+              </td>
+              <td><span class="badge active">● Live Index</span></td>
+            </tr>
+            <tr>
+              <td><strong>Full-Grain Leather Everyday Folio</strong></td>
+              <td>Leather Goods</td>
+              <td>$89.00</td>
+              <td>
+                <span class="tag-chip">leather</span>
+                <span class="tag-chip">work</span>
+                <span class="tag-chip">laptop</span>
+              </td>
+              <td><span class="badge active">● Live Index</span></td>
+            </tr>
+            <tr>
+              <td><strong>Pure Linen Japanese Apron</strong></td>
+              <td>Kitchenware & Textiles</td>
+              <td>$54.00</td>
+              <td>
+                <span class="tag-chip">linen</span>
+                <span class="tag-chip">kitchen</span>
+                <span class="tag-chip">apron</span>
+              </td>
+              <td><span class="badge active">● Live Index</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="dashboard.js"></script>
+</body>
+</html>

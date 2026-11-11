@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ShopConverse AI — ভয়েস কমার্স ও লাইভ শপ কনসিয়ার্জ</title>
+  <style>
+    :root {
+      --bg: #0b0f19;
+      --card-bg: #151c2e;
+      --accent: #3b82f6;
+      --text: #f3f4f6;
+      --subtext: #9ca3af;
+      --gold: #f59e0b;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 24px;
+      text-align: center;
+    }
+    .container {
+      max-width: 600px;
+      width: 100%;
+      background: var(--card-bg);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 32px 24px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    }
+    .badge {
+      display: inline-block;
+      background: rgba(59, 130, 246, 0.2);
+      color: #60a5fa;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+    h1 {
+      font-size: 26px;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, #60a5fa, #c084fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    p {
+      color: var(--subtext);
+      font-size: 15px;
+      line-height: 1.6;
+      margin-bottom: 28px;
+    }
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 20px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 16px;
+      transition: all 0.2s ease;
+      border: 1px solid transparent;
+    }
+    .btn-primary {
+      background: #2563eb;
+      color: #fff;
+    }
+    .btn-primary:hover {
+      background: #1d4ed8;
+      transform: translateY(-2px);
+    }
+    .btn-secondary {
+      background: #1e293b;
+      color: #e2e8f0;
+      border: 1px solid #334155;
+    }
+    .btn-secondary:hover {
+      background: #334155;
+      transform: translateY(-2px);
+    }
+    .footer-note {
+      margin-top: 24px;
+      font-size: 12px;
+      color: var(--subtext);
+    }
+    .footer-note a {
+      color: var(--gold);
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="badge">🎙️ ShopConverse AI v2.4</div>
+    <h1>শপকনভার্স AI লাইভ পোর্টাল</h1>
+    <p>বাংলা ও ইংরেজি ভয়েস অ্যাসিস্ট্যান্ট সহ স্বয়ংক্রিয় ই-কমার্স সেলস কনসিয়ার্জ। ক্রেতা কথা বলে পণ্য খুঁজবে এবং এক ক্লিকে কার্টে যোগ করবে।</p>
+    
+    <div class="options">
+      <a href="web_store_and_concierge/demo-store.html" class="btn btn-primary">
+        <span>🛒 লাইভ ডেমো স্টোর ও ভয়েস কনসিয়ার্জ</span>
+        <span>➔</span>
+      </a>
+      <a href="merchant_dashboard/index.html" class="btn btn-secondary">
+        <span>📊 মার্চেন্ট ও স্টোর ড্যাশবোর্ড</span>
+        <span>➔</span>
+      </a>
+    </div>
+
+    <div class="footer-note">
+      উদ্যোক্তা: <strong>অয়ন কুমার ঘোষ (Ayan Kumar Ghosh)</strong> | <a href="https://www.buymeacoffee.com/AyanKumarGhosh" target="_blank">Buy Me a Coffee</a>
+    </div>
+  </div>
+</body>
+</html>

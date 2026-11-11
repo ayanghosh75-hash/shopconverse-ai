@@ -1,0 +1,546 @@
+/* ==========================================================================
+   ShopConverse AI — Luxury Glassmorphism & Artistic Storefront Widget
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --sc-brand: #6366f1;
+  --sc-brand-gradient: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #ec4899 100%);
+  --sc-brand-glow: rgba(99, 102, 241, 0.35);
+  --sc-surface: rgba(255, 255, 255, 0.88);
+  --sc-surface-card: #ffffff;
+  --sc-border: rgba(226, 232, 240, 0.8);
+  --sc-border-glass: rgba(255, 255, 255, 0.4);
+  --sc-text-main: #0f172a;
+  --sc-text-sub: #64748b;
+  --sc-accent-green: #10b981;
+  --sc-shadow-ambient: 0 20px 40px -10px rgba(15, 23, 42, 0.18), 0 0 1px 1px rgba(15, 23, 42, 0.06);
+  --sc-radius-lg: 24px;
+  --sc-radius-md: 16px;
+  --sc-radius-sm: 10px;
+  --sc-ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.sc-widget-container {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 9999999;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  box-sizing: border-box;
+}
+
+.sc-widget-container * {
+  box-sizing: border-box;
+}
+
+/* Floating Launcher Teaser Tooltip */
+.sc-teaser-bubble {
+  position: absolute;
+  bottom: 74px;
+  right: 4px;
+  background: rgba(15, 23, 42, 0.92);
+  backdrop-filter: blur(12px);
+  color: #ffffff;
+  padding: 10px 16px;
+  border-radius: 18px;
+  border-bottom-right-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  animation: sc-float 3s ease-in-out infinite, sc-fade-in 0.4s var(--sc-ease-spring);
+  transform-origin: bottom right;
+}
+
+.sc-teaser-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  right: 18px;
+  width: 12px;
+  height: 12px;
+  background: rgba(15, 23, 42, 0.92);
+  transform: rotate(45deg);
+}
+
+@keyframes sc-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+@keyframes sc-fade-in {
+  from { opacity: 0; transform: scale(0.9) translateY(10px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* Floating Launcher Button */
+.sc-launcher-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--sc-brand-gradient);
+  background-size: 200% 200%;
+  animation: sc-gradient-shift 6s ease infinite;
+  color: #ffffff;
+  border: none;
+  border-radius: 40px;
+  padding: 14px 24px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 10px 30px var(--sc-brand-glow), 0 0 0 1px rgba(255, 255, 255, 0.2) inset;
+  transition: all 0.3s var(--sc-ease-spring);
+  user-select: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.sc-launcher-btn::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%; width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+  transition: left 0.6s ease;
+}
+
+.sc-launcher-btn:hover::before {
+  left: 100%;
+}
+
+.sc-launcher-btn:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 16px 38px var(--sc-brand-glow), 0 0 0 2px rgba(255, 255, 255, 0.3) inset;
+}
+
+.sc-launcher-btn:active {
+  transform: translateY(-1px) scale(0.98);
+}
+
+@keyframes sc-gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.sc-sparkle-icon {
+  font-size: 18px;
+  display: inline-block;
+  animation: sc-spin-subtle 4s linear infinite;
+}
+
+@keyframes sc-spin-subtle {
+  0%, 100% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(15deg) scale(1.15); }
+}
+
+/* Glassmorphism Chat Window */
+.sc-chat-window {
+  position: absolute;
+  bottom: 80px;
+  right: 0;
+  width: 410px;
+  height: 620px;
+  max-width: calc(100vw - 32px);
+  max-height: calc(100vh - 110px);
+  background: var(--sc-surface);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-radius: var(--sc-radius-lg);
+  box-shadow: var(--sc-shadow-ambient);
+  border: 1px solid var(--sc-border-glass);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(20px) scale(0.95);
+  transition: all 0.35s var(--sc-ease-spring);
+}
+
+.sc-chat-window.sc-open {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+}
+
+/* Header */
+.sc-header {
+  background: var(--sc-brand-gradient);
+  background-size: 200% 200%;
+  animation: sc-gradient-shift 8s ease infinite;
+  color: #ffffff;
+  padding: 18px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.sc-header-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.sc-avatar {
+  width: 44px;
+  height: 44px;
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(8px);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  border: 1.5px solid rgba(255, 255, 255, 0.35);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.sc-title {
+  font-size: 16px;
+  font-weight: 800;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.sc-status {
+  font-size: 11px;
+  color: #e0e7ff;
+  margin: 3px 0 0 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 500;
+}
+
+.sc-status-dot {
+  width: 7px;
+  height: 7px;
+  background-color: #34d399;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #34d399;
+}
+
+.sc-close-btn {
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  color: #ffffff;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.sc-close-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: rotate(90deg);
+}
+
+/* Chat Messages */
+.sc-messages {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background: linear-gradient(180deg, rgba(248, 250, 252, 0.75) 0%, rgba(241, 245, 249, 0.75) 100%);
+  scroll-behavior: smooth;
+}
+
+.sc-messages::-webkit-scrollbar {
+  width: 5px;
+}
+.sc-messages::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 10px;
+}
+
+.sc-msg {
+  display: flex;
+  flex-direction: column;
+  max-width: 88%;
+  font-size: 13.5px;
+  line-height: 1.55;
+  animation: sc-msg-in 0.3s var(--sc-ease-spring);
+}
+
+@keyframes sc-msg-in {
+  from { opacity: 0; transform: translateY(10px) scale(0.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.sc-msg-bot { align-self: flex-start; }
+.sc-msg-user { align-self: flex-end; }
+
+.sc-bubble {
+  padding: 12px 16px;
+  border-radius: var(--sc-radius-md);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.sc-msg-bot .sc-bubble {
+  background: #ffffff;
+  color: var(--sc-text-main);
+  border: 1px solid var(--sc-border);
+  border-bottom-left-radius: 4px;
+}
+
+.sc-msg-user .sc-bubble {
+  background: var(--sc-brand-gradient);
+  color: #ffffff;
+  border-bottom-right-radius: 4px;
+  box-shadow: 0 4px 14px var(--sc-brand-glow);
+}
+
+/* Interactive Product Recommendation Card */
+.sc-product-card {
+  margin-top: 10px;
+  background: #ffffff;
+  border: 1px solid var(--sc-border);
+  border-radius: var(--sc-radius-md);
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  transition: transform 0.25s var(--sc-ease-spring), box-shadow 0.25s;
+}
+
+.sc-product-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+}
+
+.sc-product-img-wrap {
+  position: relative;
+  width: 100%;
+  height: 155px;
+  overflow: hidden;
+  background: #f1f5f9;
+}
+
+.sc-product-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.sc-product-card:hover .sc-product-img {
+  transform: scale(1.05);
+}
+
+.sc-badge-rating {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(6px);
+  color: #fbbf24;
+  padding: 4px 8px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.sc-badge-stock {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(16, 185, 129, 0.9);
+  color: #ffffff;
+  padding: 3px 8px;
+  border-radius: 20px;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.sc-product-details {
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.sc-product-title {
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--sc-text-main);
+  margin: 0;
+  line-height: 1.3;
+}
+
+.sc-product-desc {
+  font-size: 11.5px;
+  color: var(--sc-text-sub);
+  margin: 0;
+  line-height: 1.45;
+}
+
+.sc-product-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid #f1f5f9;
+}
+
+.sc-product-price {
+  font-size: 17px;
+  font-weight: 900;
+  color: #059669;
+}
+
+.sc-add-btn {
+  background: var(--sc-brand-gradient);
+  color: #ffffff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 4px 12px var(--sc-brand-glow);
+  transition: all 0.2s var(--sc-ease-spring);
+}
+
+.sc-add-btn:hover {
+  transform: translateY(-1px) scale(1.03);
+  box-shadow: 0 6px 16px var(--sc-brand-glow);
+}
+
+.sc-add-btn:active {
+  transform: scale(0.96);
+}
+
+/* Quick Suggestion Pills */
+.sc-quick-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.sc-pill {
+  background: #ffffff;
+  border: 1px solid rgba(99, 102, 241, 0.25);
+  color: var(--sc-brand);
+  padding: 6px 12px;
+  border-radius: 18px;
+  font-size: 11.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+}
+
+.sc-pill:hover {
+  background: var(--sc-brand-gradient);
+  color: #ffffff;
+  border-color: transparent;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px var(--sc-brand-glow);
+}
+
+/* Typing Indicator */
+.sc-typing-dots {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 0;
+}
+
+.sc-dot {
+  width: 6px;
+  height: 6px;
+  background: #94a3b8;
+  border-radius: 50%;
+  animation: sc-bounce 1.4s infinite ease-in-out both;
+}
+
+.sc-dot:nth-child(1) { animation-delay: -0.32s; }
+.sc-dot:nth-child(2) { animation-delay: -0.16s; }
+
+@keyframes sc-bounce {
+  0%, 80%, 100% { transform: scale(0); }
+  40% { transform: scale(1); }
+}
+
+/* Chat Input Area */
+.sc-input-area {
+  padding: 14px 16px;
+  background: #ffffff;
+  border-top: 1px solid var(--sc-border);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sc-input-wrap {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.sc-input {
+  width: 100%;
+  padding: 11px 16px;
+  background: #f8fafc;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 24px;
+  font-size: 13.5px;
+  outline: none;
+  font-family: inherit;
+  transition: all 0.2s;
+  color: var(--sc-text-main);
+}
+
+.sc-input:focus {
+  background: #ffffff;
+  border-color: var(--sc-brand);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+
+.sc-send-btn {
+  background: var(--sc-brand-gradient);
+  color: #ffffff;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  box-shadow: 0 4px 12px var(--sc-brand-glow);
+  transition: all 0.2s var(--sc-ease-spring);
+  flex-shrink: 0;
+}
+
+.sc-send-btn:hover {
+  transform: scale(1.08);
+}
+
+.sc-send-btn:active {
+  transform: scale(0.95);
+}
